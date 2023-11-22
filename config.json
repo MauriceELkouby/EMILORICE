@@ -82,6 +82,24 @@
     },
        {"conditions":
         [
+            {"topic":"water/","comparison":"<","value":20}
+        ],
+     "results":
+        [
+            {"topic":"level/warningl","value":"off"}
+        ]
+    },
+        {"conditions":
+        [
+            {"topic":"water/level","comparison":">=","value":20}
+        ],
+     "results":
+        [
+            {"topic":"level/warningl","value":"on"}
+        ]
+    },
+       {"conditions":
+        [
             {"topic":"water/level","comparison":"<","value":20}
         ],
      "results":
@@ -89,4 +107,5 @@
             {"topic":"level/warningl","value":"off"}
         ]
     }
+    
 ]
