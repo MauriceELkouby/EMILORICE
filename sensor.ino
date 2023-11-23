@@ -28,8 +28,8 @@ int lightValue = 0; // Variable to store the light level
 
 //Connects to wife---------------------------------------------------------------------------------------------------------
 // Wi-Fi credentials: replace with those of your network
-const char* ssid = "BELL419";  // The name of the WiFi network
-const char* password = "46193941191D"; // The WiFi network passkey
+const char* ssid = "wifi name";  // The name of the WiFi network
+const char* password = "password"; // The WiFi network passkey
 //Connects to MQTT Broker
 // MQTT broker details: replace with your own
 const char* mqtt_server = "chaveropi.local"; // The MQTT broker's hostname or IP address
