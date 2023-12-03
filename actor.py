@@ -17,7 +17,9 @@ pin_pump_out=27
 pin_pump_in=22
 
 
-GPIO.setup(pin, GPIO.OUT)
+GPIO.setup(pin_heater, GPIO.OUT)
+GPIO.setup(pin_pump_in, GPIO.OUT)
+GPIO.setup(pin_pump_out, GPIO.OUT)
 
 
 # Callback functions for MQTT client
