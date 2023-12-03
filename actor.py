@@ -4,13 +4,18 @@ import RPi.GPIO as GPIO # General Purpose Input/Output library
 #Subscribes to the appropriate MQTT topic
 broker_address = "localhost"  # Replace with the Raspberry Pi's IP if not running locally
 topic_temp = "tank/heater"  #MQTT topic
-topic_temp = "tank/heater"  #MQTT topic
+topic_levelh = "level/warningh"  #MQTT topic
+topic_levell = "level/warningl"  #MQTT topic
+topic_quality = "quality/warning" 
 
 # Set up the GPIO mode
 GPIO.setmode(GPIO.BCM)
 
 #pin 18 as output
-pin=18
+pin_heater=17
+pin_pump_out=27
+pin_pump_in=22
+
 
 GPIO.setup(pin, GPIO.OUT)
 
@@ -22,10 +27,21 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, message):
     print(f"Received message on topic '{message.topic}': {message.payload.decode()}")
-    if message.payload.decode() == "on": #if on, turn on the LED
-         GPIO.output(pin, 1)
-    if message.payload.decode() == "off": #if off, turn off the LED
-        GPIO.output(pin, 0)
+    if message.topic == topic_temp:
+        if message.payload.decode() == "on": #if on, turn on the LED
+            GPIO.output(pin_heater, 1)
+        if message.payload.decode() == "off": #if off, turn off the LED
+            GPIO.output(pin_heater, 0)
+    if message.topic == topic_quality:
+        if message.payload.decode() == "on": #if on, turn on the LED
+            GPIO.output(pin_pump_out, 1)
+        if message.payload.decode() == "off": #if off, turn off the LED
+            GPIO.output(pin_pump_out, 0)
+    if message.topic == topic_levell:
+        if message.payload.decode() == "on": #if on, turn on the LED
+            GPIO.output(pin_pump_in, 1)
+        if message.payload.decode() == "off": #if off, turn off the LED
+            GPIO.output(pin_pump_in, 0)
 
 # Create an MQTT client
 client = mqtt.Client()
