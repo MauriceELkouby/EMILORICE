@@ -19,7 +19,8 @@
     },
         {"conditions":
         [
-            {"topic":"water/quality","comparison":">","value":50}
+            {"topic":"water/quality","comparison":">","value":50},
+            {"topic":"level/warningl","comparison":"=","value":"on"}
         ],
      "results":
         [
@@ -55,7 +56,8 @@
     },
     {"conditions":
         [
-            {"topic":"water/level","comparison":">=","value":20}
+            {"topic":"water/level","comparison":">=","value":20},
+            {"topic":"level/warningh","comparison":"=","value":"off"}
         ],
      "results":
         [
