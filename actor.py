@@ -25,7 +25,11 @@ GPIO.setup(pin_pump_out, GPIO.OUT)
 # Callback functions for MQTT client
 def on_connect(client, userdata, flags, rc):
     print("Connected to MQTT broker with result code " + str(rc))
-    client.subscribe(topic)
+    client.subscribe(topic_temp)
+    client.subscribe(topic_topic_levelh)
+    client.subscribe(topic_topic_levell)
+    client.subscribe(topic_quality)
+
 
 def on_message(client, userdata, message):
     print(f"Received message on topic '{message.topic}': {message.payload.decode()}")
