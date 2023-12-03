@@ -3,7 +3,8 @@ import RPi.GPIO as GPIO # General Purpose Input/Output library
 # Define the MQTT broker and topic
 #Subscribes to the appropriate MQTT topic
 broker_address = "localhost"  # Replace with the Raspberry Pi's IP if not running locally
-topic = "tank/heater"  #MQTT topic
+topic_temp = "tank/heater"  #MQTT topic
+topic_temp = "tank/heater"  #MQTT topic
 
 # Set up the GPIO mode
 GPIO.setmode(GPIO.BCM)
