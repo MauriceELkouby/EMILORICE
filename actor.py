@@ -21,13 +21,14 @@ GPIO.setup(pin_heater, GPIO.OUT)
 GPIO.setup(pin_pump_in, GPIO.OUT)
 GPIO.setup(pin_pump_out, GPIO.OUT)
 
+GPIO.setwarnings(False)
 
 # Callback functions for MQTT client
 def on_connect(client, userdata, flags, rc):
     print("Connected to MQTT broker with result code " + str(rc))
     client.subscribe(topic_temp)
-    client.subscribe(topic_topic_levelh)
-    client.subscribe(topic_topic_levell)
+    client.subscribe(topic_levelh)
+    client.subscribe(topic_levell)
     client.subscribe(topic_quality)
 
 
@@ -50,18 +51,18 @@ def on_message(client, userdata, message):
             GPIO.output(pin_pump_in, 0)
 
 try:
-    while True:
-        # Create an MQTT client
-        client = mqtt.Client()
+   while True:
+      # Create an MQTT client
+      client = mqtt.Client()
 
-        # Set up callback functions
-        client.on_connect = on_connect
-        client.on_message = on_message
+      # Set up callback functions
+      client.on_connect = on_connect
+      client.on_message = on_message
 
-        client.connect(broker_address)
+      client.connect(broker_address)
 
-        # Start the MQTT client loop to receive messages
-        client.loop_forever()
-
+      # Start the MQTT client loop to receive messages
+      client.loop_forever()
 finally:
-    GPIO.cleanup()
+   GPIO.cleanup()
+	
