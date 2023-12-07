@@ -49,14 +49,19 @@ def on_message(client, userdata, message):
         if message.payload.decode() == "off": #if off, turn off the LED
             GPIO.output(pin_pump_in, 0)
 
-# Create an MQTT client
-client = mqtt.Client()
+try:
+    while True:
+        # Create an MQTT client
+        client = mqtt.Client()
 
-# Set up callback functions
-client.on_connect = on_connect
-client.on_message = on_message
+        # Set up callback functions
+        client.on_connect = on_connect
+        client.on_message = on_message
 
-client.connect(broker_address)
+        client.connect(broker_address)
 
-# Start the MQTT client loop to receive messages
-client.loop_forever()
+        # Start the MQTT client loop to receive messages
+        client.loop_forever()
+
+finally:
+    GPIO.cleanup()
