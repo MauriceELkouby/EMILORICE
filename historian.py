@@ -11,7 +11,8 @@ MQTT_TOPIC = "#"
 # SQLite Database configuration
 DB_FILE = "historian_data.db"
 
-# MQTT client callback for connection - the method that will be run once co>def on_connect(client, userdata, flags, rc):
+# MQTT client callback for connection - the method that will be run once connected to the broker
+def on_connect(client, userdata, flags, rc):
     print("connected to MQTT")
     # subscribe to the topics
     client.subscribe(MQTT_TOPIC)
@@ -27,8 +28,8 @@ def on_message(client, userdata, msg):
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     #save all that to the database as a record
     save_to_database(topic, payload, timestamp)
-# method to save to the SQLite3 database
 
+# method to save to the SQLite3 database
 def save_to_database(topic, value, timestamp):
     print("saved a message")
     # connect to the database
@@ -36,10 +37,12 @@ def save_to_database(topic, value, timestamp):
     cursor = conn.cursor()
 
     # make sure the DB table exists and build it otherwise
-    SQL = "CREATE TABLE IF NOT EXISTS historian_data (topic TEXT, payload T>    cursor.execute(SQL)
+    SQL = "CREATE TABLE IF NOT EXISTS historian_data (topic TEXT, payload TEXT, timestamp TEXT)"
+    cursor.execute(SQL)
 
     # save the message to the table
-    SQL = "INSERT INTO historian_data (topic, payload, timestamp) VALUES (?>    cursor.execute(SQL, (topic, value, timestamp))
+    SQL = "INSERT INTO historian_data (topic, payload, timestamp) VALUES (?,?,?)"
+    cursor.execute(SQL, (topic, value, timestamp))
 
     # confirm the writing and close
     conn.commit()
