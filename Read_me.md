@@ -16,4 +16,4 @@ In general, the project was enjoyable to work on, and it taught me the basics of
 
 
 Maurice: 
-    
+As previously stated, this projected turned out to be quite a handful. We ended up with a faulty heating element, which happened due to us not wanting to buy a high watt usage heating element and cutting the wire as we weren't sure how to be safe. I think switching to the LED was the best idea for our scenario as it provides a safe and easy way to simulate our system. We had different issues with the code aswell and with the transfer of data from the sensor to the historian, but through testing and researching we both learned and grew from these experiences and I we have a greater and stronger understanding of IOT systems. Ultimately, working on the project was amusing and when things worked it was exciting and really gave us a good feeling, I also enjoyed the use of multiple coding languages do build an intricate yet simple IOT system.   
